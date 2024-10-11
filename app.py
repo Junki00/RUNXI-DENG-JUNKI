@@ -7,6 +7,7 @@ import click
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + os.path.join(app.root_path, 'data.db')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 @app.cli.command()
@@ -17,10 +18,24 @@ def initdb(drop):
     db.create_all()
     click.echo('Initialized database.')
 
+@app.context_processor
+def inject_user():
+    user = User.query.first()
+    return dict(user=user)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+@app.route('/')
+def index():
+    movies = Movie.query.all()
+    return render_template('index.html', movies=movies)
+
 @app.cli.command()
 def forge():
     db.create_all()
-    name = 'Junki D'
+    name = 'Junki-D'
     movies = [
         {'title': 'My Neighbor Totoro', 'year': '1988'},
         {'title': 'Dead Poets Society', 'year': '1989'},
@@ -41,16 +56,6 @@ def forge():
 
     db.session.commit()
     click.echo('Done.')
-
-@app.route('/')
-def index():
-    user = User.query.first()
-    movies = Movie.query.all()
-    return render_template('index.html', user=user, movies=movies)
-
-@app.route('/user/<name>')
-def user_page(name):
-    return f'User: {escape(name)}'
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
