@@ -5,8 +5,13 @@ body {
     font-family: Helvetica, Arial, sans-serif;
 }
 
-.avatar {
-    width: 40px;
+.filmphotos {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    display: block;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 nav ul {
@@ -113,9 +118,7 @@ input[name=year] {
 }
 
 .totoro {
-    display: block;
-    margin: 0 auto;
-    height: 100px;
+    width: 200px;
 }
 
 footer {

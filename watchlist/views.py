@@ -25,7 +25,45 @@ def index():
         return redirect(url_for('index'))
 
     movies = Movie.query.all()
-    return render_template('index.html', movies=movies)
+    return render_template('index.html')
+
+
+@app.route('/graphics')
+def graphics():
+    return render_template('graphics.html')
+
+
+@app.route('/industrial')
+def industrial():
+    return render_template('industrial.html')
+
+
+@app.route('/filmphotos')
+def filmphotos():
+    return render_template('filmphotos.html')
+
+
+@app.route('/watchlist', methods=['GET', 'POST'])
+def watchlist():
+    if request.method == 'POST':
+        if not current_user.is_authenticated:
+            return redirect(url_for('watchlist'))
+
+        title = request.form['title']
+        year = request.form['year']
+
+        if not title or not year or len(year) != 4 or len(title) > 60:
+            flash('Invalid input.')
+            return redirect(url_for('watchlist'))
+
+        movie = Movie(title=title, year=year)
+        db.session.add(movie)
+        db.session.commit()
+        flash('Item created.')
+        return redirect(url_for('watchlist'))
+
+    movies = Movie.query.all()
+    return render_template('watchlist.html', movies=movies)
 
 
 @app.route('/movie/edit/<int:movie_id>', methods=['GET', 'POST'])
