@@ -13,13 +13,29 @@
     {% for message in get_flashed_messages() %}
         <div class="alert">{{ message }}</div>
     {% endfor %}
-    <h2>Something about {{ user.name }}</h2>
+    {% if request.endpoint == 'industrial' %}
+        <h1>Something about {{ user.name }}'s Industrial Designs</h1>
+    {% elif request.endpoint == 'index' %}
+        <h1>Something about {{ user.name }}</h1>
+    {% elif request.endpoint == 'graphics' %}
+        <h1>Something about {{ user.name }}'s Graphic Designs</h1>
+    {% else %}
+        <h1>Something about {{ user.name }}'s Others</h1>
+    {% endif %}
     <nav>
         <ul>
             <li><a href="{{ url_for('index') }}">Hi!</a></li>
             <li><a href="{{ url_for('graphics') }}">Graphic Designs</a></li>
             <li><a href="{{ url_for('industrial') }}">Industrial Designs</a></li>
-            <li><a href="{{ url_for('filmphotos') }}">Film Photography</a></li>
+
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Photography</a>
+                <ul class="dropdown-content">
+                    <li><a href="{{ url_for('filmphotos') }}">by Film</a></li>
+                    <li><a href="{{ url_for('iphonephotos') }}">by iPhone</a></li>
+                    <li><a href="{{ url_for('cameraphotos') }}">by Digital</a></li>
+                </ul>
+            </li>
             <li><a href="{{ url_for('watchlist') }}">Watchlist</a></li>
         {% if current_user.is_authenticated %}
             <li><a href="{{ url_for('settings') }}">Settings</a></li>
@@ -31,10 +47,16 @@
     </nav>
     {% block content %}{% endblock %}
     <footer>
-        <img alt="Totoro" class="totoro" src="{{ url_for('static', filename='images/totoro.gif') }}"><br>
         <small>
-            <a href="https://github.com/Junki00">GitHub</a><br>
-            <a href="https://www.linkedin.com/in/junki-deng-466901324">LinkedIn</a>
+            <br>
+            <br>
+            <br>
+            <hr>
+            <br>
+            <p>Please feel free to get in touch with me directly via E-mail at junki122623@gmail.com</p>
+            <p>by Junki-D in Tokyo, Japan.</p>
+            <a href="https://github.com/Junki00"><img alt="GitHub Link" class="social_media_logos" src="{{ url_for('static', filename='images/icons8-github-100.png') }}"></a>
+            <a href="https://www.linkedin.com/in/junki-deng-466901324"><img alt="LinkedIn Link" class="social_media_logos" src="{{ url_for('static', filename='images/icons8-linkedin-100.png') }}"></a>
         </small>
     </footer>
 </body>

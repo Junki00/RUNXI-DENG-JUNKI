@@ -32,15 +32,24 @@ def index():
 def graphics():
     return render_template('graphics.html')
 
+@app.route('/iphonephotos')
+def iphonephotos():
+    return render_template('iphonephotos.html')
 
-@app.route('/industrial')
-def industrial():
-    return render_template('industrial.html')
+
+@app.route('/cameraphotos')
+def cameraphotos():
+    return render_template('cameraphotos.html')
 
 
 @app.route('/filmphotos')
 def filmphotos():
     return render_template('filmphotos.html')
+
+
+@app.route('/industrial')
+def industrial():
+    return render_template('industrial.html')
 
 
 @app.route('/watchlist', methods=['GET', 'POST'])
