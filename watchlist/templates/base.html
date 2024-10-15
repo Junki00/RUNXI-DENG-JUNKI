@@ -14,29 +14,21 @@
         <div class="alert">{{ message }}</div>
     {% endfor %}
     {% if request.endpoint == 'industrial' %}
-        <h1>Something about {{ user.name }}'s Industrial Designs</h1>
+        <h1>Something about {{ user.name }}'s<br>Industrial Designs</h1>
     {% elif request.endpoint == 'index' %}
         <h1>Something about {{ user.name }}</h1>
     {% elif request.endpoint == 'graphics' %}
-        <h1>Something about {{ user.name }}'s Graphic Designs</h1>
+        <h1>Something about {{ user.name }}'s<br>Graphic Designs</h1>
     {% else %}
-        <h1>Something about {{ user.name }}'s Others</h1>
+        <h1>Something about {{ user.name }}'s<br>Photography works</h1>
     {% endif %}
     <nav>
         <ul>
             <li><a href="{{ url_for('index') }}">Hi!</a></li>
             <li><a href="{{ url_for('graphics') }}">Graphic Designs</a></li>
-            <li><a href="{{ url_for('industrial') }}">Industrial Designs</a></li>
-
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropbtn">Photography</a>
-                <ul class="dropdown-content">
-                    <li><a href="{{ url_for('filmphotos') }}">by Film</a></li>
-                    <li><a href="{{ url_for('iphonephotos') }}">by iPhone</a></li>
-                    <li><a href="{{ url_for('cameraphotos') }}">by Digital</a></li>
-                </ul>
+            <li><a href="{{ url_for('industrial') }}">Industrial Designs</a></li>            
+            <li><a href="{{ url_for('filmphotos') }}">Photography</a></li>
             </li>
-            <li><a href="{{ url_for('watchlist') }}">Watchlist</a></li>
         {% if current_user.is_authenticated %}
             <li><a href="{{ url_for('settings') }}">Settings</a></li>
             <li><a href="{{ url_for('logout') }}">Logout</a></li>
