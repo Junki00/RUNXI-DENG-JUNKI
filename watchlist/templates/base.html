@@ -10,6 +10,18 @@
     {% endblock %}
 </head>
 <body>
+    <span class="float-right">
+        <nav class="log-state-nav">
+            <ul>
+            {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('settings') }}">Settings</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
+            </ul>
+        </nav>
+    </span>
     {% for message in get_flashed_messages() %}
         <div class="alert">{{ message }}</div>
     {% endfor %}
@@ -17,6 +29,8 @@
         <h1>Something about {{ user.name }}'s<br>Industrial Designs</h1>
     {% elif request.endpoint == 'index' %}
         <h1>Something about {{ user.name }}</h1>
+    {% elif request.endpoint == 'messages' %}
+        <h1>Messages</h1>
     {% elif request.endpoint == 'graphics' %}
         <h1>Something about {{ user.name }}'s<br>Graphic Designs</h1>
     {% else %}
@@ -28,20 +42,16 @@
             <li><a href="{{ url_for('graphics') }}">Graphic Designs</a></li>
             <li><a href="{{ url_for('industrial') }}">Industrial Designs</a></li>            
             <li><a href="{{ url_for('filmphotos') }}">Photography</a></li>
+            <li><a href="{{ url_for('messages') }}">Messages</a></li>
             </li>
-        {% if current_user.is_authenticated %}
-            <li><a href="{{ url_for('settings') }}">Settings</a></li>
-            <li><a href="{{ url_for('logout') }}">Logout</a></li>
-        {% else %}
-            <li><a href="{{ url_for('login') }}">Login</a></li>
-        {% endif %}
         </ul>
     </nav>
     {% block content %}{% endblock %}
-    <footer>
+    <footer class="text-center">
         <small>
             <br>
             <br>
+            <p><a id="bottom" href="#" title="Go Top"><img src="/static/images/icons8-scroll-up.png" alt="Go Top"></a></p>
             <br>
             <hr>
             <br>

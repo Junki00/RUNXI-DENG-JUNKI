@@ -1,17 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h3>Hey! I'm on my way, thanks! 😊 <br>Here's the plan:</h3>
-<h3>1. Set up a comments board where users can leave messages.<br>
-    2. Implement user registration and login functionality.<br>
-    3. Relocate login and related buttons away from the navigation bar.<br>
+<h3>Hey! Please leave me some <a href="{{ url_for('messages') }}">messages</a>. </h3>
+
+<h4>Here's my plan:<br>
+    1. Set up a comments board where users can leave messages. (Done)<br>
+    2. Relocate login and related buttons away from the navigation bar. (Done)<br>
+    3. Implement user registration and login functionality.<br>
     4. Enhance the design to make it as visually appealing as possible.
-</h3>
-<h5>
-    The site now supports login, logout, and updating the owner’s name.<br>
+</h4>
+<h4>
+    The site now supports <span style="color: #F5C518;">login</span>, <span style="color: #F5C518;">logout</span>, and <span style="color: #F5C518;">updating</span> the owner’s name.<br>
     Feel free to log in and explore!<br>
-    Oh, and before you log out, don’t forget to add your favorite movie into the watchlist. 😉
-</h5>
+    And before you log out, don’t forget to add your favorite movie into the watchlist.
+</h4>
 <p>Username: junki<br>Password: 123</p>
 <img src="/static/images/under_construction.gif" alt="Under Construction" class="static_pics_shadow">
 {% if current_user.is_authenticated %}

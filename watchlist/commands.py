@@ -1,7 +1,10 @@
 import click
 
 from watchlist import app, db
-from watchlist.models import User, Movie
+from watchlist.models import User, Movie, Message
+from watchlist.models import Message
+from datetime import datetime, timedelta
+import random
 
 
 @app.cli.command()
@@ -33,12 +36,30 @@ def forge():
         {'title': 'The Pork of Music', 'year': '2012'},
     ]
 
+    def generate_random_content():
+        sentences = [
+            "这是一条测试消息。",
+            "希望大家今天过得愉快！",
+            "数据库操作真有趣。",
+            "Flask 是一个很棒的框架。",
+            "学习编程需要耐心和毅力。"
+        ]
+        return " ".join(random.choices(sentences, k=random.randint(1, 3)))
+
+    for i in range(10):
+        name = f"用户{i+1}"
+        time = datetime.now() - timedelta(days=random.randint(0, 30), hours=random.randint(0, 23), minutes=random.randint(0, 59))
+        content = generate_random_content()
+        
+        message = Message(name=name, time=time, content=content)
+        db.session.add(message)
+
     user = User(name=name)
     db.session.add(user)
+
     for m in movies:
         movie = Movie(title=m['title'], year=m['year'])
         db.session.add(movie)
-
     db.session.commit()
     click.echo('Done.')
 
