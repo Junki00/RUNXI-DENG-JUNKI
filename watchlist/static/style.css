@@ -1,5 +1,6 @@
 body {
-  margin: auto;
+  margin: 0 auto;
+  padding: 5px;
   max-width: 580px;
   font-size: 14px;
   font-family: Helvetica, Arial, sans-serif;
