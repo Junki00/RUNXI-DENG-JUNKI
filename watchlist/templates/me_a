@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>Say Something Here!</h1>
-    <form class="message-form" method="post">
-        Your Name<br>
-        <input type="string" name="name" autocomplete="off" required><br>
-        Message<br>
-        <textarea type="text" name="content" autocomplete="off" required maxlength="1000"></textarea><br>
+    <form method="post">
+        Your Name <input type="string" name="name" autocomplete="off" required><br>
+        Message <input type="text" name="content" autocomplete="off" required>
+        <br>
         <input class="btn" type="submit" name="submit" value="Submit">
     </form>
     <h5>{{ pagination.total }} messages</h5>
-    <ul class="message-list">
+    <ul>
         {% for message in messages %}
             <li>
                 <h4 class="message_name">{{ message.name }}</h4>
@@ -30,7 +29,7 @@
                         </form>
                     {% endif %}
                 </span>
-                <p class="message-content">
+                <p>
                     {{ message.content }}
                 </p>
             </li>
@@ -38,7 +37,7 @@
     </ul>
 
     <!-- 分页控件 -->
-    <div class="message-pagination">
+    <div class="pagination">
         {% for page in pagination.iter_pages() %}
             {% if page %}
                 {% if page != pagination.page %}
