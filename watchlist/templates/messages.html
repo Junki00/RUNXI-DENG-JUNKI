@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Say Something Here!</h1>
+    <h3>
+        何か話してください！<br>
+        Say Something Here!
+    </h3>
     <form class="message-form" method="post">
-        Your Name<br>
+        あなたの呼び方 / Your Name<br>
         <input type="string" name="name" autocomplete="off" required><br>
-        Message<br>
+        メッセージ / Message<br>
         <textarea type="text" name="content" autocomplete="off" required maxlength="1000"></textarea><br>
-        <input class="btn" type="submit" name="submit" value="Submit">
+        <input class="btn" type="submit" name="submit" value="送信 / Submit">
     </form>
-    <h5>{{ pagination.total }} messages</h5>
+    <h5>{{ pagination.total }} 件のメッセージ / {{ pagination.total }} messages</h5>
     <ul class="message-list">
         {% for message in messages %}
             <li>
@@ -17,7 +20,8 @@
                 <span class="float-right">
                     <small>
                         {% if message.time %}
-                            {{ message.time.strftime('%Y-%m-%d %H:%M:%S') }}
+                            {{ message.time.strftime('%Y-%m-%d') }}<br>
+                            {{ message.time.strftime('%H:%M:%S') }}
                         {% else %}
                             Time not available
                         {% endif %}
@@ -26,8 +30,8 @@
                 <span class="float-right">
                     {% if current_user.is_authenticated %}
                         <form class="inline-form" method="post" action="{{ url_for('delete_message', message_id=message.id) }}">
-                            <input class="btn" type="submit" name="delete" value="Delete" onclick="return confirm('Are you sure?')">
-                        </form>
+                            <input class="btn" type="submit" name="delete" value="削除 / Delete" onclick="return confirm('Are you sure?')">
+                        </form>　
                     {% endif %}
                 </span>
                 <p class="message-content">
