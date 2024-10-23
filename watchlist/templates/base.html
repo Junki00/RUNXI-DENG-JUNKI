@@ -4,7 +4,7 @@
     {% block head %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ user.name }}について</title>
+    <title>潤希について / About {{ user.name }}</title>
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
     {% endblock %}
@@ -28,7 +28,7 @@
     {% if request.endpoint == 'industrial' %}
         <h1>工業デザイン<br>Industrial Designs</h1>
     {% elif request.endpoint == 'index' %}
-    <h1>潤希です<br>This is Junki</h1>
+    <h1>潤希です<br>This is {{ user.name }}</h1>
     {% elif request.endpoint == 'messages' %}
     <h1>メッセージ<br>Message</h1>
     {% elif request.endpoint == 'graphics' %}
