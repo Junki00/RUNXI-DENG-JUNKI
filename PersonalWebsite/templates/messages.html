@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+<p>
+    Hi! {{ user.name }}<br>
+    ログインして、メッセージの削除や名義の変更をお試しください<br>
+    「Log In」をクリックすると、ユーザー名とパスワードをご確認いただけます
+</p>
+<h3>
+    何か話してください！<br>
+    Say Something Here!
+</h3>
+<form class="message-form" method="post">
+    Your Name<br>
+    <input type="string" name="name" autocomplete="off" required><br>
+    Your Message<br>
+    <textarea type="text" name="content" autocomplete="off" required maxlength="1000"></textarea><br>
+    <input class="btn" type="submit" name="submit" value="送信 / Submit">
+</form>
+<h5>{{ pagination.total }} 件のメッセージ / {{ pagination.total }} messages</h5>
+<ul class="message-list">
+    {% for message in messages %}
+    <li>
+        <h4 class="message_name">{{ message.name }}</h4>
+        <p class="message_id">#{{message.id}}</p>
+        <span class="float-right">
+            <small>
+                {% if message.time %}
+                {{ message.time.strftime('%Y-%m-%d') }}<br>
+                {{ message.time.strftime('%H:%M:%S') }}
+                {% else %}
+                Time not available
+                {% endif %}
+            </small>
+        </span>
+        <span class="float-right">
+            {% if current_user.is_authenticated %}
+            <form class="inline-form" method="post" action="{{ url_for('delete_message', message_id=message.id) }}">
+                <input class="btn" type="submit" name="delete" value="削除 / Delete"
+                    onclick="return confirm('Are you sure?')">
+            </form>　
+            {% endif %}
+        </span>
+        <p class="message-content">
+            {{ message.content }}
+        </p>
+    </li>
+    {% endfor %}
+</ul>
+
+<!-- 分页控件 -->
+<div class="message-pagination">
+    {% for page in pagination.iter_pages() %}
+    {% if page %}
+    {% if page != pagination.page %}
+    <a href="{{ url_for('messages', page=page) }}">{{ page }}</a>
+    {% else %}
+    <strong>{{ page }}</strong>
+    {% endif %}
+    {% else %}
+    <span class="ellipsis">…</span>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

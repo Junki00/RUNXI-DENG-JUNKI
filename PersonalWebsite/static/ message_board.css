@@ -1,0 +1,134 @@
+.message-board {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.message-board h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.message-board form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.message-board input[type="string"],
+.message-board input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.message-board .btn {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.message-board .btn:hover {
+    background-color: #2980b9;
+}
+
+.message-board h5 {
+    color: #7f8c8d;
+    margin-bottom: 20px;
+}
+
+.message-board ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.message-board li {
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.message-board .message_name {
+    color: #2c3e50;
+    margin: 0 0 10px 0;
+}
+
+.message-board .message_id {
+    color: #95a5a6;
+    font-size: 0.9em;
+    margin: 0;
+}
+
+.message-board .float-right {
+    float: right;
+    margin-left: 10px;
+}
+
+.message-board .float-right small {
+    color: #7f8c8d;
+}
+
+.message-board .inline-form {
+    display: inline;
+}
+
+.message-board .pagination {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.message-board .pagination a,
+.message-board .pagination strong {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 2px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    color: #3498db;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.message-board .pagination strong {
+    background-color: #3498db;
+    color: #fff;
+    border-color: #3498db;
+}
+
+.message-board .pagination a:hover {
+    background-color: #f4f4f4;
+}
+
+.message-board .pagination .ellipsis {
+    padding: 5px;
+    color: #95a5a6;
+}
+
+.message-board .flash-messages {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.message-board .flash-message {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>潤希について</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
+    {% endblock %}
+</head>
+
+<body>
+    <span class="float-right">
+        <nav class="log-state-nav">
+            <ul>
+                {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('settings') }}">Settings</a></li>
+                <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+                {% else %}
+                <li><a href="{{ url_for('login') }}">Log In</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </span>
+    {% block content %}{% endblock %}
+</body>
+
+</html>
